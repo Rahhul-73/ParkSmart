@@ -1,0 +1,157 @@
+/*
+ * Global Styles — ParkSmart
+ * Theme: Dark-mode with neon cyan/purple accents & glassmorphism
+ * (PO5 — Modern Tool Usage: Tailwind CSS utility-first framework)
+ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    background-color: #060812;
+    color: #d1d3de;
+    font-family: 'Inter', system-ui, sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #0a0d1a;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #06b6d4, #a855f7);
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #22d3ee, #c084fc);
+  }
+
+  /* Selection */
+  ::selection {
+    background: rgba(6, 182, 212, 0.3);
+    color: #ecfeff;
+  }
+}
+
+@layer components {
+  /* ─── Glassmorphism Card ─── */
+  .glass-card {
+    @apply relative bg-dark-800/40 backdrop-blur-xl border border-dark-600/30 rounded-2xl;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  }
+
+  .glass-card-hover {
+    @apply glass-card transition-all duration-300;
+  }
+
+  .glass-card-hover:hover {
+    @apply border-neon-500/30;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 20px rgba(6, 182, 212, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    transform: translateY(-2px);
+  }
+
+  /* ─── Neon Button ─── */
+  .btn-neon {
+    @apply relative px-6 py-3 rounded-xl font-semibold text-white overflow-hidden transition-all duration-300;
+    background: linear-gradient(135deg, #06b6d4, #a855f7);
+    box-shadow: 0 0 20px rgba(6, 182, 212, 0.3);
+  }
+
+  .btn-neon:hover {
+    box-shadow: 0 0 30px rgba(6, 182, 212, 0.5), 0 0 60px rgba(168, 85, 247, 0.3);
+    transform: translateY(-1px);
+  }
+
+  .btn-neon:active {
+    transform: translateY(0);
+  }
+
+  .btn-neon::before {
+    content: '';
+    @apply absolute inset-0 opacity-0 transition-opacity duration-300;
+    background: linear-gradient(135deg, #22d3ee, #c084fc);
+  }
+
+  .btn-neon:hover::before {
+    opacity: 1;
+  }
+
+  .btn-neon span {
+    @apply relative z-10;
+  }
+
+  /* ─── Neon Outline Button ─── */
+  .btn-neon-outline {
+    @apply px-6 py-3 rounded-xl font-semibold transition-all duration-300 border;
+    border-color: rgba(6, 182, 212, 0.4);
+    color: #06b6d4;
+  }
+
+  .btn-neon-outline:hover {
+    @apply bg-neon-500/10 border-neon-400;
+    box-shadow: 0 0 20px rgba(6, 182, 212, 0.2);
+  }
+
+  /* ─── Input ─── */
+  .input-glass {
+    @apply w-full px-4 py-3 bg-dark-800/60 backdrop-blur-sm border border-dark-600/40 rounded-xl text-dark-100 placeholder-dark-400 transition-all duration-300 outline-none;
+  }
+
+  .input-glass:focus {
+    @apply border-neon-500/60;
+    box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.1), 0 0 20px rgba(6, 182, 212, 0.1);
+  }
+
+  /* ─── Neon Text Gradient ─── */
+  .text-neon-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #06b6d4, #a855f7);
+  }
+
+  /* ─── Parking Slot Visual ─── */
+  .slot-available {
+    @apply border-emerald-500/40 bg-emerald-500/10;
+  }
+
+  .slot-occupied {
+    @apply border-red-500/40 bg-red-500/10;
+  }
+
+  .slot-reserved {
+    @apply border-amber-500/40 bg-amber-500/10;
+  }
+
+  .slot-maintenance {
+    @apply border-dark-500/40 bg-dark-600/30;
+  }
+
+  /* ─── Background Mesh Gradient ─── */
+  .bg-mesh {
+    background:
+      radial-gradient(at 20% 20%, rgba(6, 182, 212, 0.08) 0px, transparent 50%),
+      radial-gradient(at 80% 80%, rgba(168, 85, 247, 0.08) 0px, transparent 50%),
+      radial-gradient(at 50% 50%, rgba(6, 182, 212, 0.03) 0px, transparent 70%);
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
